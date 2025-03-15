@@ -1,0 +1,23 @@
+html,
+body {
+  font-family: Roboto;
+  font-size: 12px;
+  background-color: #e7e7e7;
+  margin: 0px;
+  color: #000;
+}
+
+section,
+nav {
+  margin: 20px;
+}
+
+h2 {
+  color: #ffa500;
+}
+
+hr {
+  height: 1px;
+  border-width: 0;
+  background-color: #b6b6b6;
+}
