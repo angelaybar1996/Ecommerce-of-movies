@@ -5,8 +5,10 @@ import {
   eliminarFavorito,
 } from "../Services/favoritoServices";
 
+//sera utilizado para compartir datos entre componentes
 export const FavoritoContext = createContext();
-//la palabra provider es reservada en react que sabe que es solo en Context
+
+//envolvera los componentes que necesiten acceder a los favoritos
 export const FavoritoProvider = (props) => {
   const [cantidadFav, setCantidadFav] = useState(0);
   const [itemsFav, setItemsFav] = useState([]);
@@ -39,7 +41,7 @@ export const FavoritoProvider = (props) => {
     setCantidadFav(cantidadFav - 1);
   };
 
-  //se ejecuta una vez cuando se monta el componente
+  //se utiliza para cargar los favoritos al inicio
   useEffect(() => {
     handleObtenerFavorito();
   }, []);

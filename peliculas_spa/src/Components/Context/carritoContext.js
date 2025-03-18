@@ -1,59 +1,68 @@
 import React, { useEffect, createContext, useState } from "react";
 import {
-  obtenerFavorito,
-  agregarFavorito,
-  eliminarFavorito,
-} from "../Services/carritoServices";
+  obtenerFavorito as obtenerCarrito, // Renombramos la importación
+  agregarFavorito as agregarAlCarrito,
+  eliminarFavorito as eliminarDelCarrito,
+} from "../Services/favoritoServices";
+import { comprarCarrito } from "../Services/carritoServices"; // Este es exclusivo para la compra
 
 export const CarritoContext = createContext();
-//la palabra provider es reservada en react que sabe que es solo en Context
-export const FavoritoProvider = (props) => {
-  const [cantidadFav, setCantidadFav] = useState(0);
-  const [itemsFav, setItemsFav] = useState([]);
 
-  const handleObtenerFavorito = async () => {
-    const { data: favoritos } = await obtenerFavorito();
-    setItemsFav(favoritos);
-    setCantidadFav(favoritos.length);
+export const CarritoProvider = ({ children }) => {
+  const [itemsCarrito, setItemsCarrito] = useState([]);
+  const [cantidadCarrito, setCantidadCarrito] = useState(0);
+
+  const handleObtenerCarrito = async () => {
+    const { data: carrito } = await obtenerCarrito(); // Simula obtener el carrito
+    setItemsCarrito(carrito);
+    setCantidadCarrito(carrito.length);
   };
 
-  //esta definicion es como el json que se envia por postman
-  const handleAgregarFavorito = async (pelicula) => {
-    await agregarFavorito({
+  const handleAgregarAlCarrito = async (pelicula) => {
+    await agregarAlCarrito({
       idUsuario: 1,
       idPelicula: pelicula.idPelicula,
     });
-    setCantidadFav(cantidadFav + 1);
-    setItemsFav([...itemsFav, pelicula]);
+    setCantidadCarrito(cantidadCarrito + 1);
+    setItemsCarrito([...itemsCarrito, pelicula]);
   };
 
-  const handleEliminarFavorito = async (pelicula) => {
-    const { data } = await eliminarFavorito({
+  const handleEliminarDelCarrito = async (pelicula) => {
+    await eliminarDelCarrito({
       idUsuario: 1,
       idPelicula: pelicula.idPelicula,
     });
-    const newItems = itemsFav.filter(
+    const newItems = itemsCarrito.filter(
       (item) => item.idPelicula !== pelicula.idPelicula
     );
-    setItemsFav(newItems);
-    setCantidadFav(cantidadFav - 1);
+    setItemsCarrito(newItems);
+    setCantidadCarrito(cantidadCarrito - 1);
   };
 
-  //se ejecuta una vez cuando se monta el componente
+  const handleComprarCarrito = async () => {
+    await comprarCarrito({
+      idUsuario: 1,
+      peliculas: itemsCarrito, // Enviamos los productos a la compra
+    });
+    setItemsCarrito([]);
+    setCantidadCarrito(0);
+  };
+
   useEffect(() => {
-    handleObtenerFavorito();
+    handleObtenerCarrito();
   }, []);
 
   return (
-    <FavoritoContext.Provider
+    <CarritoContext.Provider
       value={{
-        itemsFav,
-        cantidadFav,
-        handleAgregarFavorito,
-        handleEliminarFavorito,
+        itemsCarrito,
+        cantidadCarrito,
+        handleAgregarAlCarrito,
+        handleEliminarDelCarrito,
+        handleComprarCarrito,
       }}
     >
-      {props.children}
-    </FavoritoContext.Provider>
+      {children}
+    </CarritoContext.Provider>
   );
 };
