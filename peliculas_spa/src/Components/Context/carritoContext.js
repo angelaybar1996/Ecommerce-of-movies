@@ -39,13 +39,17 @@ export const CarritoProvider = ({ children }) => {
     setCantidadCarrito(cantidadCarrito - 1);
   };
 
+  const handleEliminarTodoDelCarrito = () => {
+    setItemsCarrito([]);
+    setCantidadCarrito(0);
+  };
+
   const handleComprarCarrito = async () => {
     await comprarCarrito({
       idUsuario: 1,
       peliculas: itemsCarrito, // Enviamos los productos a la compra
     });
-    setItemsCarrito([]);
-    setCantidadCarrito(0);
+    handleEliminarTodoDelCarrito();
   };
 
   useEffect(() => {
