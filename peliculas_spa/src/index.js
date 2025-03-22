@@ -7,16 +7,19 @@ import Body from "./Components/Body/body";
 import Footer from "./Components/Footer/footer";
 import "./index.css";
 import { FavoritoProvider } from "./Components/Context/favoritoContext";
+import { CarritoProvider } from "./Components/Context/carritoContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
       <FavoritoProvider>
-        <Header></Header>
-        <Menu></Menu>
-        <Body></Body>
-        <Footer></Footer>
+        <CarritoProvider>
+          <Header></Header>
+          <Menu></Menu>
+          <Body></Body>
+          <Footer></Footer>
+        </CarritoProvider>
       </FavoritoProvider>
     </BrowserRouter>
   </React.StrictMode>

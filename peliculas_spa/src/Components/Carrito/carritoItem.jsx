@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { CarritoContext } from "../Context/favoritoContext";
+import { CarritoContext } from "../Context/carritoContext";
 import { Grid2 } from "@mui/material";
 import { Button } from "@mui/material";
 import { Rating } from "@mui/material";
@@ -39,3 +39,5 @@ const CarritoItem = ({ pelicula }) => {
     </>
   );
 };
+
+export default CarritoItem;

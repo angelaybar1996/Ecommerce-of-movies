@@ -5,11 +5,14 @@ import { Favorite } from "@mui/icons-material";
 import { Rating } from "@mui/material";
 import { Grid2 } from "@mui/material";
 import { FavoritoContext } from "../Context/favoritoContext";
+import { CarritoContext } from "../Context/carritoContext";
 
 //Este componente debe recibir por parametro un objeto que devuelve sus propiedades
 const Pelicula = ({ datos }) => {
   const { handleAgregarFavorito, handleEliminarFavorito } =
     useContext(FavoritoContext);
+  const { handleComprarCarrito, handleAgregarCarrito } =
+    useContext(CarritoContext);
   const [botones, setBotones] = useState("");
   const [esFavorito, setEsFavorito] = useState(datos.favorito.length > 0);
 
@@ -22,6 +25,7 @@ const Pelicula = ({ datos }) => {
       setEsFavorito(false);
     }
   };
+
   return (
     <>
       <Grid2 container spacing={2} xs={12} sm={6} lg={3}>
@@ -59,10 +63,8 @@ const Pelicula = ({ datos }) => {
               <Button
                 variant="contained"
                 color="primary"
-                disabled={botones}
                 onClick={() => {
-                  setBotones("disabled");
-                  alert("¡Has comprado la pelicula!");
+                  handleComprarCarrito();
                 }}
               >
                 Comprar
@@ -71,9 +73,8 @@ const Pelicula = ({ datos }) => {
               <Button
                 variant="outlined"
                 color="secondary"
-                disabled={botones}
                 onClick={() => {
-                  setBotones("disabled");
+                  handleAgregarCarrito();
                 }}
               >
                 Agregar al carrito
