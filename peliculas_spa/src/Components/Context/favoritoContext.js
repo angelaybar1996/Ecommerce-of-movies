@@ -22,7 +22,7 @@ export const FavoritoProvider = (props) => {
   //esta definicion es como el json que se envia por postman
   const handleAgregarFavorito = async (pelicula) => {
     await agregarFavorito({
-      idUsuario: 1,
+      idUsuario: 1001,
       idPelicula: pelicula.idPelicula,
     });
     setCantidadFav(cantidadFav + 1);
@@ -31,7 +31,7 @@ export const FavoritoProvider = (props) => {
 
   const handleEliminarFavorito = async (pelicula) => {
     const { data } = await eliminarFavorito({
-      idUsuario: 1,
+      idUsuario: 1001,
       idPelicula: pelicula.idPelicula,
     });
     const newItems = itemsFav.filter(

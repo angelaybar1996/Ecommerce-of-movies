@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { FavoritoContext } from "../Context/favoritoContext";
+import { CarritoContext } from "../Context/carritoContext";
 import { Grid2 } from "@mui/material";
 import { Button } from "@mui/material";
 import { Rating } from "@mui/material";
@@ -7,6 +8,7 @@ import { Paper } from "@mui/material";
 
 const FavoritoItem = ({ pelicula }) => {
   const { handleEliminarFavorito } = useContext(FavoritoContext);
+  const { handleAgregarAlCarrito } = useContext(CarritoContext);
 
   return (
     <>
@@ -30,6 +32,17 @@ const FavoritoItem = ({ pelicula }) => {
                   onClick={() => handleEliminarFavorito(pelicula)}
                 >
                   Quitar
+                </Button>
+                &nbsp;
+                <Button
+                  variant="outlined"
+                  color="secondary"
+                  onClick={() => {
+                    handleAgregarAlCarrito(pelicula);
+                    handleEliminarFavorito(pelicula);
+                  }}
+                >
+                  Agregar al carrito
                 </Button>
               </td>
             </tr>

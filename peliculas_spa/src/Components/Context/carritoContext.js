@@ -20,7 +20,7 @@ export const CarritoProvider = ({ children }) => {
 
   const handleAgregarAlCarrito = async (pelicula) => {
     await agregarAlCarrito({
-      idUsuario: 1,
+      idUsuario: 1001,
       idPelicula: pelicula.idPelicula,
     });
     setCantidadCarrito(cantidadCarrito + 1);
@@ -29,7 +29,7 @@ export const CarritoProvider = ({ children }) => {
 
   const handleEliminarDelCarrito = async (pelicula) => {
     await eliminarDelCarrito({
-      idUsuario: 1,
+      idUsuario: 1001,
       idPelicula: pelicula.idPelicula,
     });
     const newItems = itemsCarrito.filter(
@@ -46,7 +46,7 @@ export const CarritoProvider = ({ children }) => {
 
   const handleComprarCarrito = async () => {
     await comprarCarrito({
-      idUsuario: 1,
+      idUsuario: 1001,
       peliculas: itemsCarrito, // Enviamos los productos a la compra
     });
     handleEliminarTodoDelCarrito();

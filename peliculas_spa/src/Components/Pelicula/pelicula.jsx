@@ -11,7 +11,7 @@ import { CarritoContext } from "../Context/carritoContext";
 const Pelicula = ({ datos }) => {
   const { handleAgregarFavorito, handleEliminarFavorito } =
     useContext(FavoritoContext);
-  const { handleComprarCarrito, handleAgregarCarrito } =
+  const { handleComprarCarrito, handleAgregarAlCarrito } =
     useContext(CarritoContext);
   const [botones, setBotones] = useState("");
   const [esFavorito, setEsFavorito] = useState(datos.favorito.length > 0);
@@ -56,7 +56,7 @@ const Pelicula = ({ datos }) => {
             <div>{`Año: ${datos.anio}`}</div>
             <br />
             <div>
-              <b>{`Precio: ${datos.precio}`}</b>
+              <b>{`Precio:$ ${datos.precio}`}</b>
             </div>
             <br />
             <div>
@@ -74,7 +74,7 @@ const Pelicula = ({ datos }) => {
                 variant="outlined"
                 color="secondary"
                 onClick={() => {
-                  handleAgregarCarrito();
+                  handleAgregarAlCarrito(datos);
                 }}
               >
                 Agregar al carrito

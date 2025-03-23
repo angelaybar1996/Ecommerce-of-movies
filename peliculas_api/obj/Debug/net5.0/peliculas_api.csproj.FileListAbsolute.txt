@@ -63,3 +63,4 @@ C:\Users\al_aybar\Documents\udemyreacts\peliculas_api\obj\Debug\net5.0\peliculas
 C:\Users\al_aybar\Documents\udemyreacts\peliculas_api\obj\Debug\net5.0\ref\peliculas_api.dll
 C:\Users\al_aybar\Documents\udemyreacts\peliculas_api\bin\Debug\net5.0\package-lock.json
 C:\Users\al_aybar\Documents\udemyreacts\peliculas_api\bin\Debug\net5.0\package.json
+C:\Users\al_aybar\Documents\udemyreacts\peliculas_api\obj\Debug\net5.0\peliculas_api.sourcelink.json
