@@ -11,7 +11,7 @@ namespace peliculas_api.Models
         public string Apellido { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-
+        public string Token {  get; set; }
         public List<Favorito> Favorito { get; set; }
         public List<Carrito> Carrito { get; set; }
 
