@@ -6,6 +6,7 @@ import Menu from "./Components/Menu/menu";
 import Body from "./Components/Body/body";
 import Footer from "./Components/Footer/footer";
 import "./index.css";
+import { LoginProvider } from "./Components/Context/loginContext";
 import { FavoritoProvider } from "./Components/Context/favoritoContext";
 import { CarritoProvider } from "./Components/Context/carritoContext";
 
@@ -15,10 +16,12 @@ root.render(
     <BrowserRouter>
       <FavoritoProvider>
         <CarritoProvider>
-          <Header></Header>
-          <Menu></Menu>
-          <Body></Body>
-          <Footer></Footer>
+          <LoginProvider>
+            <Header></Header>
+            <Menu></Menu>
+            <Body></Body>
+            <Footer></Footer>
+          </LoginProvider>
         </CarritoProvider>
       </FavoritoProvider>
     </BrowserRouter>
