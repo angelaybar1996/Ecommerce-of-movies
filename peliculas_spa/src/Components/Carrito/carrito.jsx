@@ -19,7 +19,7 @@ const Carrito = () => {
           variant="contained"
           color="primary"
           onClick={() => {
-            handleComprarCarrito();
+            handleComprarCarrito(itemsCarrito);
           }}
         >
           COMPRAR AHORA

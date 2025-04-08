@@ -12,26 +12,26 @@ export const CarritoProvider = ({ children }) => {
   const [itemsCarrito, setItemsCarrito] = useState([]);
   const [cantidadCarrito, setCantidadCarrito] = useState(0);
 
-  const handleObtenerCarrito = async () => {
+  /*const handleObtenerCarrito = async () => {
     const { data: carrito } = await obtenerCarrito(); // Simula obtener el carrito
     setItemsCarrito(carrito);
     setCantidadCarrito(carrito.length);
-  };
+  };*/
 
   const handleAgregarAlCarrito = async (pelicula) => {
-    await agregarAlCarrito({
-      idUsuario: 1001,
+    /*await agregarAlCarrito({
+      idUsuario: localStorage.getItem("idUsuario"),
       idPelicula: pelicula.idPelicula,
-    });
+    });*/
     setCantidadCarrito(cantidadCarrito + 1);
     setItemsCarrito([...itemsCarrito, pelicula]);
   };
 
   const handleEliminarDelCarrito = async (pelicula) => {
-    await eliminarDelCarrito({
-      idUsuario: 1001,
+    /*await eliminarDelCarrito({
+      idUsuario: localStorage.getItem("idUsuario"),
       idPelicula: pelicula.idPelicula,
-    });
+    });*/
     const newItems = itemsCarrito.filter(
       (item) => item.idPelicula !== pelicula.idPelicula
     );
@@ -44,17 +44,14 @@ export const CarritoProvider = ({ children }) => {
     setCantidadCarrito(0);
   };
 
-  const handleComprarCarrito = async () => {
-    await comprarCarrito({
-      idUsuario: 1001,
-      peliculas: itemsCarrito, // Enviamos los productos a la compra
-    });
+  const handleComprarCarrito = async (peliculas) => {
+    const carrito = peliculas.map((pelicula) => ({
+      idUsuario: localStorage.getItem("idUsuario"),
+      idPelicula: pelicula.idPelicula, // Enviamos las peliculas al carrito
+    }));
+    await comprarCarrito(carrito);
     handleEliminarTodoDelCarrito();
   };
-
-  useEffect(() => {
-    handleObtenerCarrito();
-  }, []);
 
   return (
     <CarritoContext.Provider

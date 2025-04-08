@@ -13,7 +13,7 @@ const Pelicula = ({ datos }) => {
     useContext(FavoritoContext);
   const { handleComprarCarrito, handleAgregarAlCarrito } =
     useContext(CarritoContext);
-  const [botones, setBotones] = useState("");
+  const [botonesDeshabilitados, setBotonesDeshabilitados] = useState(false);
   const [esFavorito, setEsFavorito] = useState(datos.favorito.length > 0);
 
   const setFavorito = (pelicula) => {
@@ -64,8 +64,10 @@ const Pelicula = ({ datos }) => {
                 variant="contained"
                 color="primary"
                 onClick={() => {
-                  handleComprarCarrito();
+                  handleComprarCarrito([datos]);
+                  setBotonesDeshabilitados(true);
                 }}
+                disabled={botonesDeshabilitados}
               >
                 Comprar
               </Button>
@@ -75,7 +77,9 @@ const Pelicula = ({ datos }) => {
                 color="secondary"
                 onClick={() => {
                   handleAgregarAlCarrito(datos);
+                  setBotonesDeshabilitados(true);
                 }}
+                disabled={botonesDeshabilitados}
               >
                 Agregar al carrito
               </Button>

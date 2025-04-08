@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Container, TextField } from "@mui/material";
 import { Button } from "@mui/material";
 import { MailOutline, VpnKey } from "@mui/icons-material";
 import { login } from "../Services/usuarioServices";
 import { useNavigate } from "react-router-dom";
+import { LoginContext } from "../Context/loginContext";
 
 const Login = () => {
   const history = useNavigate();
@@ -13,12 +14,15 @@ const Login = () => {
     password: "",
   });
 
+  const { handleLogin } = useContext(LoginContext);
+
   const [msg, setMsg] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { data: token } = await login(usuario);
-    if (token !== "") {
+    const { data: usuarioValido } = await login(usuario);
+    if (usuarioValido) {
+      handleLogin(usuarioValido.idUsuario, usuarioValido.token);
       history("/destacadas");
     } else {
       setMsg("Las credenciales son incorrectas,intente nuevamente");
