@@ -1,7 +1,7 @@
 import axios from "./axiosServices";
 
-export function obtenerFavorito() {
-  return axios.get("Favorito/");
+export function obtenerFavorito(idUsuario) {
+  return axios.get("Favorito/" + idUsuario);
 }
 
 export function agregarFavorito(favorito) {

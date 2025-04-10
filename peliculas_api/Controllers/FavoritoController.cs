@@ -10,19 +10,20 @@ namespace peliculas_api.Controllers
     [Route("api/[controller]")]
     public class FavoritoController : Controller
     {
-       private readonly PeliculasDbContext _context;
+        private readonly PeliculasDbContext _context;
 
         public FavoritoController(PeliculasDbContext context)
         {
             _context = context;
         }
 
+        [Route ("{idUsuario}")]
         [HttpGet]
-        public ActionResult Get() 
+        public ActionResult Get(int idUsuario) 
         {
             try
             {
-                return Ok(_context.Favorito.Select(p => p.Pelicula));
+                return Ok(_context.Favorito.Where(f=>f.IdUsuario==idUsuario).Select(p => p.Pelicula));
             }
             catch(Exception ex)
             {

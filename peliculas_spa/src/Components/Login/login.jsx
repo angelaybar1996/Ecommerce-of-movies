@@ -5,6 +5,7 @@ import { MailOutline, VpnKey } from "@mui/icons-material";
 import { login } from "../Services/usuarioServices";
 import { useNavigate } from "react-router-dom";
 import { LoginContext } from "../Context/loginContext";
+import { FavoritoContext } from "../Context/favoritoContext";
 
 const Login = () => {
   const history = useNavigate();
@@ -15,6 +16,7 @@ const Login = () => {
   });
 
   const { handleLogin } = useContext(LoginContext);
+  const { handleObtenerFavorito } = useContext(FavoritoContext);
 
   const [msg, setMsg] = useState("");
 
@@ -23,6 +25,7 @@ const Login = () => {
     const { data: usuarioValido } = await login(usuario);
     if (usuarioValido) {
       handleLogin(usuarioValido.idUsuario, usuarioValido.token);
+      handleObtenerFavorito();
       history("/destacadas");
     } else {
       setMsg("Las credenciales son incorrectas,intente nuevamente");

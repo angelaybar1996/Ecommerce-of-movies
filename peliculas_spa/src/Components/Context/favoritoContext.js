@@ -14,7 +14,9 @@ export const FavoritoProvider = (props) => {
   const [itemsFav, setItemsFav] = useState([]);
 
   const handleObtenerFavorito = async () => {
-    const { data: favoritos } = await obtenerFavorito();
+    const { data: favoritos } = await obtenerFavorito(
+      localStorage.getItem("idUsuario")
+    );
     setItemsFav(favoritos);
     setCantidadFav(favoritos.length);
   };
@@ -51,6 +53,7 @@ export const FavoritoProvider = (props) => {
       value={{
         itemsFav,
         cantidadFav,
+        handleObtenerFavorito,
         handleAgregarFavorito,
         handleEliminarFavorito,
       }}
