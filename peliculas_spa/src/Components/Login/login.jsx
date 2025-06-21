@@ -6,6 +6,7 @@ import { login } from "../Services/usuarioServices";
 import { useNavigate } from "react-router-dom";
 import { LoginContext } from "../Context/loginContext";
 import { FavoritoContext } from "../Context/favoritoContext";
+import sha1 from "sha1";
 
 const Login = () => {
   const history = useNavigate();
@@ -33,7 +34,12 @@ const Login = () => {
   };
 
   const handleChange = (e) => {
-    setUsuario({ ...usuario, [e.target.name]: e.target.value });
+    setUsuario({
+      ...usuario,
+      [e.target.name]:
+        e.target.name === "password" ? sha1(e.target.value) : e.target.value,
+    });
+    console.log(usuario);
   };
 
   return (

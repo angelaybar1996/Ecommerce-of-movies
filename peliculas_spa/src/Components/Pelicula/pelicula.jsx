@@ -10,16 +10,28 @@ import { CarritoContext } from "../Context/carritoContext";
 //Este componente debe recibir por parametro un objeto que devuelve sus propiedades
 const Pelicula = ({ datos }) => {
   const { handleAgregarCarrito, handleComprar } = useContext(CarritoContext);
-  const { handleAgregarFavorito, handleEliminarFavorito } =
+
+  const { handleAgregarFavorito, handleEliminarFavorito, itemsFav } =
     useContext(FavoritoContext);
+
   //console.log(datos.favorito.length);
   const [esFavorita, setEsFavorita] = useState(false);
 
   const [botones, setBotones] = useState(false);
 
+  //editado 21/06
+  useEffect(() => {
+    const estaEnFavoritos = itemsFav.some(
+      (f) => f.idPelicula === datos.idPelicula
+    );
+    setEsFavorita(estaEnFavoritos);
+  }, [itemsFav, datos.idPelicula]);
+
+  /*
   useEffect(() => {
     const estaEnFavoritos = Favoritos.some((f) => f.id);
   });
+  */
 
   useEffect(() => {
     setBotones(datos.carrito && datos.carrito.length > 0);

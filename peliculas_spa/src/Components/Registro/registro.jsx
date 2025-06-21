@@ -4,6 +4,7 @@ import { Button } from "@mui/material";
 import { AccountCircle, MailOutline, VpnKey } from "@mui/icons-material";
 import { registrar } from "../Services/usuarioServices";
 import { useNavigate } from "react-router-dom";
+import sha1 from "sha1";
 
 const Registro = () => {
   const [usuario, setUsuario] = useState({
@@ -14,7 +15,11 @@ const Registro = () => {
   });
 
   const handleChange = (e) => {
-    setUsuario({ ...usuario, [e.target.name]: e.target.value });
+    setUsuario({
+      ...usuario,
+      [e.target.name]:
+        e.target.name === "password" ? sha1(e.target.value) : e.target.value,
+    });
   };
 
   const handleSubmit = async (e) => {
