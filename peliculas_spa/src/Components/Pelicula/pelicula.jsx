@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Button } from "@mui/material";
 import { Paper } from "@mui/material";
 import { Favorite } from "@mui/icons-material";
@@ -9,83 +9,87 @@ import { CarritoContext } from "../Context/carritoContext";
 
 //Este componente debe recibir por parametro un objeto que devuelve sus propiedades
 const Pelicula = ({ datos }) => {
+  const { handleAgregarCarrito, handleComprar } = useContext(CarritoContext);
   const { handleAgregarFavorito, handleEliminarFavorito } =
     useContext(FavoritoContext);
-  const { handleComprarCarrito, handleAgregarAlCarrito } =
-    useContext(CarritoContext);
-  const [botonesDeshabilitados, setBotonesDeshabilitados] = useState(false);
-  const [esFavorito, setEsFavorito] = useState(datos.favorito.length > 0);
+  //console.log(datos.favorito.length);
+  const [esFavorita, setEsFavorita] = useState(false);
+
+  const [botones, setBotones] = useState(false);
+
+  useEffect(() => {
+    const estaEnFavoritos = Favoritos.some((f) => f.id);
+  });
+
+  useEffect(() => {
+    setBotones(datos.carrito && datos.carrito.length > 0);
+  }, [datos.carrito]);
 
   const setFavorito = (pelicula) => {
-    if (!esFavorito) {
+    if (!esFavorita) {
       handleAgregarFavorito(pelicula);
-      setEsFavorito(true);
     } else {
       handleEliminarFavorito(pelicula);
-      setEsFavorito(false);
     }
+    setEsFavorita(!esFavorita);
   };
 
   return (
     <>
-      <Grid2 container spacing={2} xs={12} sm={6} lg={3}>
-        <Grid2>
-          <Paper sx={{ padding: 2, textAlign: "center" }}>
-            <h2>{datos.titulo}</h2>
-            <Favorite
-              color={esFavorito ? "secondary" : "disabled"}
-              style={{ cursor: "pointer" }}
-              onClick={() => setFavorito(datos)}
-            ></Favorite>
-            <div>
-              <img
-                src={datos.portada}
-                alt="Portada"
-                style={{ width: "100%", height: "auto", maxWidth: 200 }}
-              />
-            </div>
-            <div>
-              <Rating value={datos.estrellas} readOnly />
-            </div>
-            <div>{datos.sinopsis}</div>
-            <br />
-            <div>{`Género: ${datos.genero}`}</div>
-            <br />
-            <div>{`Director:${datos.director}`}</div>
-            <br />
-            <div>{`Año: ${datos.anio}`}</div>
-            <br />
-            <div>
-              <b>{`Precio:$ ${datos.precio}`}</b>
-            </div>
-            <br />
-            <div>
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={() => {
-                  handleComprarCarrito([datos]);
-                  setBotonesDeshabilitados(true);
-                }}
-                disabled={botonesDeshabilitados}
-              >
-                Comprar
-              </Button>
-              &nbsp;
-              <Button
-                variant="outlined"
-                color="secondary"
-                onClick={() => {
-                  handleAgregarAlCarrito(datos);
-                  setBotonesDeshabilitados(true);
-                }}
-                disabled={botonesDeshabilitados}
-              >
-                Agregar al carrito
-              </Button>
-            </div>
-          </Paper>
-        </Grid2>
+      <Grid2 container item xs={12} sm={4} lg={3}>
+        <Paper style={{ padding: 5, textAlign: "center" }}>
+          <h2>{datos.titulo}</h2>
+          <Favorite
+            color={esFavorita ? "secondary" : "disabled"}
+            style={{ cursor: "pointer" }}
+            onClick={() => setFavorito(datos)}
+          ></Favorite>
+          <div>
+            <img width={200} src={datos.portada} />
+          </div>
+          <div>
+            <Rating value={datos.estrellas} readOnly />
+          </div>
+          <div>{datos.sinopsis}</div>
+          <br />
+          <div>{`Género: ${datos.genero}`}</div>
+          <br />
+          <div>{`Director: ${datos.director}`}</div>
+          <br />
+          <div>{`Año: ${datos.anio}`}</div>
+          <br />
+          <div>
+            <b>{`Precio: $ ${datos.precio}`}</b>
+          </div>
+          <br />
+
+          <div>
+            <Button
+              variant="contained"
+              color="primary"
+              disabled={botones}
+              onClick={() => {
+                handleComprar([datos]);
+                setBotones(true);
+                alert("¡Has comprado esta película!");
+              }}
+            >
+              Comprar
+            </Button>
+            &nbsp;
+            <Button
+              variant="outlined"
+              color="secondary"
+              disabled={botones}
+              onClick={() => {
+                handleAgregarCarrito(datos);
+                setBotones(true);
+              }}
+            >
+              Agregar al Carrito
+            </Button>
+          </div>
+        </Paper>
       </Grid2>
     </>
   );

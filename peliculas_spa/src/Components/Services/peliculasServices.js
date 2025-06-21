@@ -1,13 +1,13 @@
 import servicio from "./axiosServices";
 
-export function obtenerPeliculas() {
-  return servicio.get("Pelicula/");
+export function obtenerPeliculas(idUsuario) {
+  return servicio.get("Pelicula/" + idUsuario);
 }
 
-export function buscarPor(buscar) {
-  return servicio.get("Pelicula/BuscarPor/" + buscar);
+export function buscarPor(idUsuario, buscar) {
+  return servicio.get("Pelicula/BuscarPor/" + idUsuario + "/" + buscar);
 }
 
-export function getDestacadas(estrellas) {
-  return servicio.get("Pelicula/GetDestacadas/" + estrellas);
+export function getDestacadas(idUsuario, estrellas) {
+  return servicio.get("Pelicula/GetDestacadas/" + idUsuario + "/" + estrellas);
 }

@@ -30,16 +30,18 @@ namespace peliculas_api.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public ActionResult Login([FromBody] Usuario usuario)
+        public ActionResult Login([FromBody] LoginDto loginDto)
         {
-            Usuario usuarioValido= _context.Usuario.Where(
-                u=> u.Email == usuario.Email &&
-                u.Password == usuario.Password ).FirstOrDefault();
+            var usuarioValido = _context.Usuario
+                .FirstOrDefault(u => u.Email == loginDto.Email && u.Password == loginDto.Password);
 
-            if (usuarioValido != null) {
+            if (usuarioValido != null)
+            {
                 usuarioValido.Token = GetJWT(usuarioValido.Email);
+                return Ok(usuarioValido);
             }
-            return Ok(usuarioValido);
+
+            return BadRequest("Credenciales incorrectas");
         }
 
         private string GetJWT(string email)

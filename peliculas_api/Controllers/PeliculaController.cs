@@ -1,13 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using peliculas_api.Context;
+using peliculas_api.Models;
 using System;
 using System.Linq;
 
 namespace peliculas_api.Controllers
 {
-    
+
+    [ApiController]
     [Route ("api/[Controller]")]//este es la url principal para este controller
-    public class PeliculaController : Controller
+    public class PeliculaController : ControllerBase
     {
         private readonly PeliculasDbContext context;
         
@@ -16,8 +18,9 @@ namespace peliculas_api.Controllers
             this.context = context;
         }
 
+        [Route("{idUsuario}")]
         [HttpGet]//esto es un data notation
-        public ActionResult Get()//Endpoint todas las peliculas
+        public ActionResult Get(int idUsuario)//Endpoint todas las peliculas
         {
             try
             {
@@ -34,7 +37,10 @@ namespace peliculas_api.Controllers
                     P.Portada,
                     P.Estrellas,
                     P.Precio,
-                    Favorito = P.Favorito.Select(fa => new {fa.IdPelicula,fa.IdUsuario})
+                    favorito = P.Favorito.Where(f => f.IdUsuario==idUsuario).Select(
+                        fa=>new {fa.IdPelicula}),
+                    carrito=P.Carrito.Where(c=>c.IdUsuario==idUsuario).Select(
+                        ca=>new {ca.IdPelicula})
                 }).ToList());
             }
             catch(Exception ex)
@@ -42,9 +48,9 @@ namespace peliculas_api.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [Route("[action]/{valor}")]//Endpoint buscar por
+        [Route("[action]/{idUsuario}/{valor}")]//Endpoint buscar por
         [HttpGet("BuscarPor")]
-        public ActionResult BuscarPor(string valor)
+        public ActionResult BuscarPor(int idUsuario, string valor)
         {
             try
             {
@@ -62,7 +68,10 @@ namespace peliculas_api.Controllers
                     p.Portada,
                     p.Estrellas,
                     p.Precio,
-                    Favorito = p.Favorito.Select(fa => new { fa.IdPelicula, fa.IdUsuario })
+                    favorito = p.Favorito.Where(f => f.IdUsuario==idUsuario).Select(
+                        fa=> new {fa.IdPelicula,fa.IdUsuario}),
+                    carrito=p.Carrito.Where(c=>c.IdUsuario==idUsuario).Select(
+                        ca=> new {ca.IdPelicula})
                 }).Where(p => p.Genero.Contains(valor) ||
                 p.Titulo.Contains(valor) ||
                 p.Director.Contains(valor) ||
@@ -76,9 +85,9 @@ namespace peliculas_api.Controllers
             }
         }
 
-        [Route("[action]/{estrellas}")]
+        [Route("[action]/{idUsuario}/{estrellas}")]
         [HttpGet("GetDestacadas")]
-        public ActionResult GetDestacadas(int estrellas)
+        public ActionResult GetDestacadas(int idUsuario,int estrellas)
         {
             try
             {
@@ -96,7 +105,10 @@ namespace peliculas_api.Controllers
                     p.Portada,
                     p.Estrellas,
                     p.Precio,
-                    Favorito = p.Favorito.Select(fa => new { fa.IdPelicula, fa.IdUsuario })
+                    favorito = p.Favorito.Where(f => f.IdUsuario == idUsuario).Select(
+                        fa => new { fa.IdPelicula, fa.IdUsuario }),
+                    carrito = p.Carrito.Where(c => c.IdUsuario == idUsuario).Select(
+                        ca => new { ca.IdPelicula })
                 }).Where(p => p.Estrellas >=estrellas));
 
             }

@@ -10,10 +10,25 @@ const Peliculas = () => {
 
   //manera con AXIOS
   const cargarPeliculas = async () => {
+    try {
+      const idUsuario = localStorage.getItem("idUsuario");
+      console.log("ID del usuario:", idUsuario);
+
+      const { data: films } = await obtenerPeliculas(idUsuario);
+      setPeliculas(films);
+    } catch (error) {
+      console.error("Error al cargar películas:", error);
+      if (error.response) {
+        console.error("Respuesta del servidor:", error.response.data); // ⬅️ Esto mostrará el error del backend
+      }
+    }
+  };
+  /*
+  const cargarPeliculas = async () => {
     const { data: films } = await obtenerPeliculas();
     console.log(films);
     setPeliculas(films);
-  };
+  };*/
 
   //manera con FETCH
   /*const cargarPeliculas = () => {
