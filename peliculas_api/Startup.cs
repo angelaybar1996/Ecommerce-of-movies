@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -8,20 +9,26 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using peliculas_api.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace peliculas_api
 {
     public class Startup
     {
+        private readonly string keyValue;
+        private readonly string issuer;
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+             keyValue=configuration.GetSection("JWT_KEY").GetSection("Key").Value.ToString();
+             issuer= configuration.GetSection("JWT_KEY").GetSection("Issuer").Value.ToString();
         }
 
         public IConfiguration Configuration { get; }
@@ -31,9 +38,22 @@ namespace peliculas_api
         {
 
             services.AddControllers();
-            //Aque agrego el DBContext para utilizar la base de datos
+            //Aqui agrego el DBContext para utilizar la base de datos
             services.AddDbContext<PeliculasDbContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("PeliculasConnection")));
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = issuer,
+                    ValidAudience = issuer,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(keyValue)),
+                };
+            });
            
         }
 

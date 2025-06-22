@@ -19,7 +19,6 @@ C:\Users\al_aybar\Documents\udemyreacts\peliculas_api\bin\Debug\net5.0\Microsoft
 C:\Users\al_aybar\Documents\udemyreacts\peliculas_api\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\al_aybar\Documents\udemyreacts\peliculas_api\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\al_aybar\Documents\udemyreacts\peliculas_api\bin\Debug\net5.0\Microsoft.OpenApi.dll
-C:\Users\al_aybar\Documents\udemyreacts\peliculas_api\bin\Debug\net5.0\Newtonsoft.Json.dll
 C:\Users\al_aybar\Documents\udemyreacts\peliculas_api\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\al_aybar\Documents\udemyreacts\peliculas_api\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\al_aybar\Documents\udemyreacts\peliculas_api\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
@@ -64,3 +63,4 @@ C:\Users\al_aybar\Documents\udemyreacts\peliculas_api\obj\Debug\net5.0\ref\pelic
 C:\Users\al_aybar\Documents\udemyreacts\peliculas_api\bin\Debug\net5.0\package-lock.json
 C:\Users\al_aybar\Documents\udemyreacts\peliculas_api\bin\Debug\net5.0\package.json
 C:\Users\al_aybar\Documents\udemyreacts\peliculas_api\obj\Debug\net5.0\peliculas_api.sourcelink.json
+C:\Users\al_aybar\Documents\udemyreacts\peliculas_api\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
