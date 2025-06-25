@@ -13,12 +13,12 @@ import { CarritoProvider } from "./Components/Context/carritoContext";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <BrowserRouter forceRefresh={true}>
       <FavoritoProvider>
         <CarritoProvider>
           <LoginProvider>
-            <Header></Header>
-            <Menu></Menu>
+            {localStorage.getItem("idUsuario") > 0 && <Header />}
+            {localStorage.getItem("idUsuario") > 0 && <Menu />}
             <Body></Body>
             <Footer></Footer>
           </LoginProvider>

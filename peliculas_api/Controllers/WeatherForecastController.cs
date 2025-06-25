@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using peliculas_api.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

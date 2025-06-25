@@ -1,6 +1,6 @@
 using System;
 
-namespace peliculas_api
+namespace peliculas_api.Models
 {
     public class WeatherForecast
     {

@@ -45,7 +45,8 @@ export const FavoritoProvider = (props) => {
 
   //se utiliza para cargar los favoritos al inicio
   useEffect(() => {
-    handleObtenerFavorito();
+    //si idUsuario tiene algun valor ejecuto la funcion handleObtenerFavorito
+    localStorage.getItem("idUsuario") && handleObtenerFavorito();
   }, []);
 
   return (

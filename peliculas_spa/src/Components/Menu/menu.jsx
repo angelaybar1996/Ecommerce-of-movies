@@ -4,6 +4,7 @@ import { TextField } from "@mui/material";
 import { Button } from "@mui/material";
 import { Search, Star, Apps, Close } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
+import { Logout } from "@mui/icons-material";
 
 const Menu = () => {
   const history = useNavigate();
@@ -39,6 +40,17 @@ const Menu = () => {
       <Button variant="contained" onClick={() => history("/peliculas")}>
         <Apps color="action"></Apps>
         Todas
+      </Button>
+      &nbsp;
+      <Button
+        variant="contained"
+        onClick={() => {
+          localStorage.clear();
+          history("/");
+        }}
+      >
+        <Logout color="action"></Logout>
+        Salir
       </Button>
     </nav>
   );
