@@ -76,6 +76,9 @@ namespace peliculas_api
 
             app.UseRouting();
 
+            //middleware
+            app.UseAuthentication();
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

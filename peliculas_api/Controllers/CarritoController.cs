@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using peliculas_api.Context;
 using peliculas_api.Models;
 using System;
@@ -7,6 +8,7 @@ using System.Collections.Generic;
 namespace peliculas_api.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize]
     public class CarritoController : Controller
     {
        

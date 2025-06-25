@@ -1,14 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using peliculas_api.Context;
 using peliculas_api.Models;
 using System;
 using System.Linq;
 
 namespace peliculas_api.Controllers
-{
-
-    [ApiController]
+{   
+    [Authorize]
     [Route ("api/[Controller]")]//este es la url principal para este controller
+    [ApiController]
     public class PeliculaController : ControllerBase
     {
         private readonly PeliculasDbContext context;

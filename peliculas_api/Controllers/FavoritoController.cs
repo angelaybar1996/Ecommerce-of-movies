@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using peliculas_api.Context;
 using peliculas_api.Models;
@@ -8,6 +9,7 @@ using System.Linq;
 namespace peliculas_api.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize]
     public class FavoritoController : Controller
     {
         private readonly PeliculasDbContext _context;

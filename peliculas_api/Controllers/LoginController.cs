@@ -13,6 +13,7 @@ using System.Text;
 namespace peliculas_api.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize]
     public class LoginController : Controller
     {
         private readonly PeliculasDbContext _context;
