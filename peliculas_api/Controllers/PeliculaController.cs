@@ -49,8 +49,9 @@ namespace peliculas_api.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [Route("[action]/{idUsuario}/{valor}")]//Endpoint buscar por
-        [HttpGet("BuscarPor")]
+        //[Route("[action]/{idUsuario}/{valor}")]//Endpoint buscar por
+        //[HttpGet("BuscarPor")]
+        [HttpGet("BuscarPor/{idUsuario}/{valor}")]
         public ActionResult BuscarPor(int idUsuario, string valor)
         {
             try
@@ -86,8 +87,9 @@ namespace peliculas_api.Controllers
             }
         }
 
-        [Route("[action]/{idUsuario}/{estrellas}")]
-        [HttpGet("GetDestacadas")]
+        //[Route("[action]/{idUsuario}/{estrellas}")]
+        //[HttpGet("GetDestacadas")]
+        [HttpGet("GetDestacadas/{idUsuario}/{estrellas}")]
         public ActionResult GetDestacadas(int idUsuario,int estrellas)
         {
             try

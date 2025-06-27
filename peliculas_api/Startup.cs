@@ -41,7 +41,7 @@ namespace peliculas_api
             //Aqui agrego el DBContext para utilizar la base de datos
             services.AddDbContext<PeliculasDbContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("PeliculasConnection")));
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+           services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
             {
                 options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
                 {
@@ -54,7 +54,43 @@ namespace peliculas_api
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(keyValue)),
                 };
             });
-           
+
+            // Configura Swagger
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "Peliculas API",
+                    Version = "v1",
+                    Description = "Documentación de la API de películas",
+                });
+
+                // Configura autenticación JWT en Swagger
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    In = ParameterLocation.Header,
+                    Description = "Ingresa el token JWT como: Bearer {token}",
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer"
+                });
+
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            }
+                        },
+                        Array.Empty<string>()
+                    }
+                });
+
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -80,6 +116,14 @@ namespace peliculas_api
             app.UseAuthentication();
 
             app.UseAuthorization();
+
+            // Middleware de Swagger
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Peliculas API V1");
+                c.RoutePrefix = "swagger"; // URL: /swagger
+            });
 
             app.UseEndpoints(endpoints =>
             {

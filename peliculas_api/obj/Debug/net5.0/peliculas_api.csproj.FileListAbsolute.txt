@@ -1,11 +1,14 @@
 C:\Users\al_aybar\Documents\udemyreacts\peliculas_api\bin\Debug\net5.0\appsettings.Development.json
 C:\Users\al_aybar\Documents\udemyreacts\peliculas_api\bin\Debug\net5.0\appsettings.json
+C:\Users\al_aybar\Documents\udemyreacts\peliculas_api\bin\Debug\net5.0\package-lock.json
+C:\Users\al_aybar\Documents\udemyreacts\peliculas_api\bin\Debug\net5.0\package.json
 C:\Users\al_aybar\Documents\udemyreacts\peliculas_api\bin\Debug\net5.0\peliculas_api.exe
 C:\Users\al_aybar\Documents\udemyreacts\peliculas_api\bin\Debug\net5.0\peliculas_api.deps.json
 C:\Users\al_aybar\Documents\udemyreacts\peliculas_api\bin\Debug\net5.0\peliculas_api.runtimeconfig.json
 C:\Users\al_aybar\Documents\udemyreacts\peliculas_api\bin\Debug\net5.0\peliculas_api.runtimeconfig.dev.json
 C:\Users\al_aybar\Documents\udemyreacts\peliculas_api\bin\Debug\net5.0\peliculas_api.dll
 C:\Users\al_aybar\Documents\udemyreacts\peliculas_api\bin\Debug\net5.0\peliculas_api.pdb
+C:\Users\al_aybar\Documents\udemyreacts\peliculas_api\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\al_aybar\Documents\udemyreacts\peliculas_api\bin\Debug\net5.0\Microsoft.Data.SqlClient.dll
 C:\Users\al_aybar\Documents\udemyreacts\peliculas_api\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll
 C:\Users\al_aybar\Documents\udemyreacts\peliculas_api\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Abstractions.dll
@@ -46,6 +49,7 @@ C:\Users\al_aybar\Documents\udemyreacts\peliculas_api\obj\Debug\net5.0\peliculas
 C:\Users\al_aybar\Documents\udemyreacts\peliculas_api\obj\Debug\net5.0\peliculas_api.csproj.CoreCompileInputs.cache
 C:\Users\al_aybar\Documents\udemyreacts\peliculas_api\obj\Debug\net5.0\peliculas_api.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\al_aybar\Documents\udemyreacts\peliculas_api\obj\Debug\net5.0\peliculas_api.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\al_aybar\Documents\udemyreacts\peliculas_api\obj\Debug\net5.0\peliculas_api.sourcelink.json
 C:\Users\al_aybar\Documents\udemyreacts\peliculas_api\obj\Debug\net5.0\peliculas_api.RazorTargetAssemblyInfo.cache
 C:\Users\al_aybar\Documents\udemyreacts\peliculas_api\obj\Debug\net5.0\scopedcss\bundle\peliculas_api.styles.css
 C:\Users\al_aybar\Documents\udemyreacts\peliculas_api\obj\Debug\net5.0\staticwebassets\peliculas_api.StaticWebAssets.Manifest.cache
@@ -60,7 +64,3 @@ C:\Users\al_aybar\Documents\udemyreacts\peliculas_api\obj\Debug\net5.0\refint\pe
 C:\Users\al_aybar\Documents\udemyreacts\peliculas_api\obj\Debug\net5.0\peliculas_api.pdb
 C:\Users\al_aybar\Documents\udemyreacts\peliculas_api\obj\Debug\net5.0\peliculas_api.genruntimeconfig.cache
 C:\Users\al_aybar\Documents\udemyreacts\peliculas_api\obj\Debug\net5.0\ref\peliculas_api.dll
-C:\Users\al_aybar\Documents\udemyreacts\peliculas_api\bin\Debug\net5.0\package-lock.json
-C:\Users\al_aybar\Documents\udemyreacts\peliculas_api\bin\Debug\net5.0\package.json
-C:\Users\al_aybar\Documents\udemyreacts\peliculas_api\obj\Debug\net5.0\peliculas_api.sourcelink.json
-C:\Users\al_aybar\Documents\udemyreacts\peliculas_api\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
