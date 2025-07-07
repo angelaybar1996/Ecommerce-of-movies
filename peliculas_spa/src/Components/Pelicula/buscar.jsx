@@ -9,7 +9,8 @@ const Buscar = () => {
   const { valor } = useParams();
 
   const handleBuscar = async (buscar) => {
-    const { data: peliculas } = await buscarPor(buscar);
+    const idUsuario = localStorage.getItem("idUsuario");
+    const { data: peliculas } = await buscarPor(idUsuario, buscar);
     console.log(peliculas);
     setPelicula(peliculas);
   };

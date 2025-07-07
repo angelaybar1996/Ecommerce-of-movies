@@ -6,10 +6,11 @@ import { Rating } from "@mui/material";
 import { Grid2 } from "@mui/material";
 import { FavoritoContext } from "../Context/favoritoContext";
 import { CarritoContext } from "../Context/carritoContext";
+import { comprarCarrito } from "../Services/carritoServices";
 
 //Este componente debe recibir por parametro un objeto que devuelve sus propiedades
 const Pelicula = ({ datos }) => {
-  const { handleAgregarCarrito, handleComprar } = useContext(CarritoContext);
+  const { handleAgregarAlCarrito } = useContext(CarritoContext);
 
   const { handleAgregarFavorito, handleEliminarFavorito, itemsFav } =
     useContext(FavoritoContext);
@@ -18,6 +19,35 @@ const Pelicula = ({ datos }) => {
   const [esFavorita, setEsFavorita] = useState(false);
 
   const [botones, setBotones] = useState(false);
+
+  // Verifica si la película ya fue comprada o no
+  const [comprada, setComprada] = useState(false);
+
+  useEffect(() => {
+    // Verificamos si la película ya ha sido comprada
+    const yaComprada = datos.carrito && datos.carrito.length > 0;
+    setComprada(yaComprada);
+    setBotones(yaComprada); // Desactivamos los botones si la película ya está en el carrito (comprada)
+  }, [datos.carrito]);
+
+  const comprarDirecto = async () => {
+    const idUsuario = localStorage.getItem("idUsuario");
+    try {
+      const payload = [
+        {
+          idUsuario,
+          idPelicula: datos.idPelicula,
+        },
+      ];
+      await comprarCarrito(payload); // reemplazá por tu ruta real
+      alert("¡Has comprado esta película!");
+      setBotones(true); // Desactiva todos los botones después de la compra
+      setComprada(true); // Marca la película como comprada
+    } catch (error) {
+      console.error("Error al comprar:", error);
+      alert("Error al procesar la compra.");
+    }
+  };
 
   //editado 21/06
   useEffect(() => {
@@ -54,6 +84,7 @@ const Pelicula = ({ datos }) => {
           <Favorite
             color={esFavorita ? "secondary" : "disabled"}
             style={{ cursor: "pointer" }}
+            disabled={botones}
             onClick={() => setFavorito(datos)}
           ></Favorite>
           <div>
@@ -80,11 +111,7 @@ const Pelicula = ({ datos }) => {
               variant="contained"
               color="primary"
               disabled={botones}
-              onClick={() => {
-                handleComprar([datos]);
-                setBotones(true);
-                alert("¡Has comprado esta película!");
-              }}
+              onClick={comprarDirecto}
             >
               Comprar
             </Button>
@@ -94,13 +121,18 @@ const Pelicula = ({ datos }) => {
               color="secondary"
               disabled={botones}
               onClick={() => {
-                handleAgregarCarrito(datos);
+                handleAgregarAlCarrito(datos);
                 setBotones(true);
               }}
             >
               Agregar al Carrito
             </Button>
           </div>
+          {comprada && (
+            <div style={{ marginTop: "10px", color: "green" }}>
+              <span>¡Ya compraste esta película!</span>
+            </div>
+          )}
         </Paper>
       </Grid2>
     </>
