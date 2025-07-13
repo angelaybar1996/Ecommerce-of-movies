@@ -24,7 +24,7 @@ const Buscar = () => {
   return (
     <>
       <h2>Resultados de la busqueda</h2>
-      <Grid2 container spacing={2}>
+      <Grid2 container spacing={2} justifyContent="center">
         {peliculas.map((pelicula) => {
           return <Pelicula datos={pelicula} key={pelicula.idPelicula} />;
         })}

@@ -1,5 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
+import { Box, Container } from "@mui/material";
 import Peliculas from "../Pelicula/peliculas";
 import Favoritos from "../Favorito/favorito";
 import Carrito from "../Carrito/carrito";
@@ -10,8 +11,16 @@ import Login from "../Login/login";
 //agregar cambio
 const Body = () => {
   return (
-    <>
-      <section>
+    <Box
+      component="main"
+      sx={{
+        flexGrow: 1,
+        minHeight: "100vh",
+        py: 4, // padding vertical
+        backgroundColor: "#f5f5f5",
+      }}
+    >
+      <Container maxWidth="lg">
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/peliculas" element={<Peliculas />} />
@@ -22,8 +31,8 @@ const Body = () => {
           <Route path="/destacadas" element={<Destacadas />} />
           <Route path="/registro" element={<Registro />} />
         </Routes>
-      </section>
-    </>
+      </Container>
+    </Box>
   );
 };
 

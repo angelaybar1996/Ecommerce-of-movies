@@ -46,9 +46,18 @@ const Peliculas = () => {
       <div>
         <h2>Peliculas</h2>
       </div>
-      <Grid2 container spacing={2} sx={{ flexGrow: 1 }}>
+      <Grid2 container spacing={2} justifyContent="center">
         {peliculas.map((pelicula) => (
-          <Grid2 item xs={12} sm={6} md={4} lg={3} key={pelicula.idPelicula}>
+          <Grid2
+            item
+            xs={12}
+            sm={6}
+            md={4}
+            lg={3}
+            xl={2}
+            sx={{ display: "flex" }}
+            key={pelicula.idPelicula}
+          >
             <Pelicula datos={pelicula} />
           </Grid2>
         ))}

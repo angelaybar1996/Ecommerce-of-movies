@@ -27,9 +27,20 @@ const Destacadas = () => {
   return (
     <>
       <h2>Peliculas destacadas</h2>
-      <Grid2 container spacing={2}>
+      <Grid2 container spacing={2} justifyContent="center">
         {peliculas.map((pelicula) => (
-          <Pelicula datos={pelicula} key={pelicula.idPelicula}></Pelicula>
+          <Grid2
+            item
+            xs={12}
+            sm={6}
+            md={4}
+            lg={3}
+            xl={2}
+            key={pelicula.idPelicula}
+            sx={{ display: "flex" }}
+          >
+            <Pelicula datos={pelicula} />
+          </Grid2>
         ))}
       </Grid2>
     </>
