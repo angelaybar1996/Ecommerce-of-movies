@@ -31,8 +31,10 @@ Este proyecto es un **eCommerce de películas** desarrollado con **React** para 
 - Swagger (documentación de la API)
 - Middlewares
 
-  Proximas mejras:
+  Proximas mejoras:
+  
   -agregarle una pasarela de pagos
+  
   -subirla en AZURE
 
 ![image](https://github.com/user-attachments/assets/3344a379-9bcb-4c72-849a-d5039239c2a6)
