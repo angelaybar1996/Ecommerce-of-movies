@@ -29,7 +29,11 @@ Este proyecto es un **eCommerce de películas** desarrollado con **React** para 
 - SQL Server
 - JWT (para autenticación)
 - Swagger (documentación de la API)
-- Middlewares 
+- Middlewares
+
+  Proximas mejras:
+  -agregarle una pasarela de pagos
+  -subirla en AZURE
 
 ![image](https://github.com/user-attachments/assets/3344a379-9bcb-4c72-849a-d5039239c2a6)
 <img width="1909" height="1072" alt="image" src="https://github.com/user-attachments/assets/33c83686-c6b0-4863-a428-fc78f504771b" />
